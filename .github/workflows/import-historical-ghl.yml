@@ -1,0 +1,90 @@
+name: Install historical GHL screenshots
+
+on:
+  push:
+    paths:
+      - Rimva_Historical_GHL_Screenshots.zip
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  add-verified-history:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Verify archive, extract and update README
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import zipfile, struct
+          from pathlib import Path
+          source=Path("Rimva_Historical_GHL_Screenshots.zip")
+          if not source.exists():
+              raise SystemExit("Archive missing: upload Rimva_Historical_GHL_Screenshots.zip to the repository root")
+          expected=[
+            "06-historical-ghl-sites-funnels.png",
+            "07-historical-ghl-account-data.png",
+          ]
+          target=Path("assets/screenshots")
+          target.mkdir(parents=True,exist_ok=True)
+          with zipfile.ZipFile(source) as z:
+              if sorted(z.namelist())!=sorted(expected):
+                  raise SystemExit("Unexpected archive files")
+              for name in expected:
+                  data=z.read(name)
+                  if data[:8]!=b"\x89PNG\r\n\x1a\n" or len(data)>5*1024*1024:
+                      raise SystemExit("Invalid image "+name)
+                  w,h=struct.unpack(">II",data[16:24])
+                  if not (400 <= w <= 1600 and 400 <= h <= 1600):
+                      raise SystemExit("Unexpected dimensions "+name)
+                  (target/name).write_bytes(data)
+          readme=Path("README.md")
+          body=readme.read_text(encoding="utf-8")
+          heading="## Historical GHL-connected backup selection"
+          if heading not in body:
+              section="""## Historical GHL-connected backup selection
+
+The following are **authentic screenshots from the earlier SwitchLayer development build (September 2026)**, before the Rimva rebrand. They were captured while an authenticated GoHighLevel workspace was open. Workspace identifiers and client-specific item names have been redacted for publication. **They document the earlier working selection interface, not a live acceptance test of Rimva v11.2.5.**
+
+### Sites & Funnels — five selected items
+
+The older connected-workspace popup shows five selected funnel/website entries, the **All / None** controls, and the export action.
+
+<p align="center"><img src="assets/screenshots/06-historical-ghl-sites-funnels.png" alt="Authentic September 2026 SwitchLayer GHL Sites and Funnels selection, client names redacted" width="426"></p>
+
+### Account Data — enabled archive categories
+
+The older popup shows enabled **AI Studio, Automations, Forms, Calendars, and Voice AI Agents** selection toggles. Selecting a category is not a guarantee that its API data was available for export.
+
+<p align="center"><img src="assets/screenshots/07-historical-ghl-account-data.png" alt="Authentic September 2026 SwitchLayer GHL Account Data selection, workspace identifier redacted" width="426"></p>
+
+**Export progress:** An authentic historical GHL running/export-progress screenshot was not available among the accessible old uploads, so no simulated screen is presented as a real run.
+
+---
+
+"""
+              targetheading="## Real extension screenshots · v11.2.5"
+              if targetheading not in body:
+                  raise SystemExit("README target heading not found")
+              body=body.replace(targetheading,section+targetheading,1)
+              readme.write_text(body,encoding="utf-8")
+          source.unlink()
+          print("Added two sanitized authentic GHL-connected screenshots and historical note")
+          PY
+
+      - name: Commit screenshots
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A README.md assets/screenshots Rimva_Historical_GHL_Screenshots.zip
+          if ! git diff --cached --quiet; then
+            git commit -m "Document historical GHL-connected backup UI with redacted real screenshots"
+            git push
+          fi

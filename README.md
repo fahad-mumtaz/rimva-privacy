@@ -53,7 +53,7 @@ Read the full [Rimva Privacy Policy](https://fahad-mumtaz.github.io/rimva-privac
 
 ## Real extension screenshots · v11.2.5
 
-These are **actual screens** captured from the Rimva 11.2.5 extension with synthetic demonstration data. They are not AI-generated interface mockups. The images displayed here are **compressed previews** for GitHub readability; the original 1280 × 800 screenshots are included in the separate Codex submission materials.
+These are **actual screens** captured from the Rimva 11.2.5 extension with synthetic demonstration data. They are not AI-generated interface mockups. All five images below are the **original 1280 × 800 PNG screenshots** from the Rimva v11.2.5 submission materials, uploaded without thumbnail downscaling. They use synthetic demonstration data; the migration verification example uses mocked destination API responses.
 
 ### 01 · GoHighLevel backup
 Select Sites & Funnels, Account Data, and supported archive modules before downloading a backup.

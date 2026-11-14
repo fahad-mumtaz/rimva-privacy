@@ -51,6 +51,22 @@ The available 11.2.5 verification includes automated regression tests and browse
 
 Read the full [Rimva Privacy Policy](https://fahad-mumtaz.github.io/rimva-privacy/).
 
+## Illustrated workflow showcase
+
+These four **Rimva-branded promotional illustrations** visualize backup and website capture. They are not unmodified Chrome screenshots or proof of a current live GHL export. Genuine v11.2.5 extension screenshots appear below.
+
+| GHL backup selection | Export completion |
+| :---: | :---: |
+| <img src="assets/showcase/01-workspace-backup-illustration.png" alt="Illustration of Rimva GHL backup selections" width="100%"> | <img src="assets/showcase/02-ghl-export-summary-illustration.png" alt="Illustration of Rimva GHL export summary" width="100%"> |
+
+| Published website capture | Snapshot ZIP ready |
+| :---: | :---: |
+| <img src="assets/showcase/03-website-capture-illustration.png" alt="Illustration of Rimva website capture" width="100%"> | <img src="assets/showcase/04-website-snapshot-result-illustration.png" alt="Illustration of Rimva website capture completion" width="100%"> |
+
+**Historical context:** Original GHL export tests occurred before the Rimva rebrand. Rebranded illustrations are visual explanations, not original live-session captures.
+
+---
+
 ## Real extension screenshots · v11.2.5
 
 These are **actual screens** captured from the Rimva 11.2.5 extension with synthetic demonstration data. They are not AI-generated interface mockups. All five images below are the **original 1280 × 800 PNG screenshots** from the Rimva v11.2.5 submission materials, uploaded without thumbnail downscaling. They use synthetic demonstration data; the migration verification example uses mocked destination API responses.

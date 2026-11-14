@@ -51,9 +51,36 @@ The available 11.2.5 verification includes automated regression tests and browse
 
 Read the full [Rimva Privacy Policy](https://fahad-mumtaz.github.io/rimva-privacy/).
 
-## Visual product reference
+## Real extension screenshots · v11.2.5
 
-The actual extension's verified **v11.2.5 screenshot set** (GHL backup, website capture, ZIP import, CRM wizard, migration report) is part of the separate submission-materials archive. This privacy repository deliberately does **not** include synthetic customer records or a runnable extension package. The illustrations above visualize workflows; they are not literal application screenshots.
+These are **actual screens** captured from the Rimva 11.2.5 extension with synthetic demonstration data. They are not AI-generated interface mockups. The images displayed here are **compressed previews** for GitHub readability; the original 1280 × 800 screenshots are included in the separate Codex submission materials.
+
+### 01 · GoHighLevel backup
+Select Sites & Funnels, Account Data, and supported archive modules before downloading a backup.
+
+![Actual Rimva GoHighLevel backup screen](assets/screenshots/01-ghl-backup.jpg)
+
+### 02 · Published website capture
+Capture a selected public website or page, including available rendered content and assets.
+
+![Actual Rimva published website capture screen](assets/screenshots/02-published-website.jpg)
+
+### 03 · Import a saved ZIP
+Open compatible Rimva and legacy backup archives without requiring an active GoHighLevel session.
+
+![Actual Rimva offline ZIP import screen](assets/screenshots/03-existing-backup-import.jpg)
+
+### 04 · Choose destination CRM
+Review adapter support and beta limitations before selecting a migration destination.
+
+![Actual Rimva destination selection screen](assets/screenshots/04-crm-migration-wizard.jpg)
+
+### 05 · Reconciliation report
+Review migrated, skipped, and failed records. **This screenshot uses synthetic data and mocked destination API responses; it is not proof of a completed live production migration.**
+
+![Actual Rimva migration report interface with synthetic results](assets/screenshots/05-migration-report.jpg)
+
+---
 
 ## About this repository
 

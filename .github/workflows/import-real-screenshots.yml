@@ -1,0 +1,76 @@
+name: Install real Rimva screenshots
+
+on:
+  push:
+    paths:
+      - Rimva_Real_Screenshots_1280x800.zip
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rimva-screenshots
+  cancel-in-progress: false
+
+jobs:
+  publish-screenshots:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Extract and verify five original PNG screenshots
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import zipfile
+          import struct
+          archive=Path("Rimva_Real_Screenshots_1280x800.zip")
+          if not archive.is_file():
+              raise SystemExit("Upload Rimva_Real_Screenshots_1280x800.zip to repository root first.")
+          expected=[
+            "01-ghl-backup.png",
+            "02-published-website.png",
+            "03-existing-backup-import.png",
+            "04-crm-migration-wizard.png",
+            "05-migration-report.png"
+          ]
+          dest=Path("assets/screenshots")
+          dest.mkdir(parents=True, exist_ok=True)
+          with zipfile.ZipFile(archive) as z:
+              if sorted(z.namelist())!=sorted(expected):
+                  raise SystemExit("Invalid screenshot ZIP: unexpected/missing files")
+              for name in expected:
+                  raw=z.read(name)
+                  if not raw.startswith(b"\x89PNG\r\n\x1a\n") or len(raw)>10*1024*1024:
+                      raise SystemExit("Invalid PNG: "+name)
+                  width,height=struct.unpack(">II",raw[16:24])
+                  if (width,height)!=(1280,800):
+                      raise SystemExit("Wrong screenshot resolution: "+name)
+                  (dest/name).write_bytes(raw)
+          readme=Path("README.md")
+          body=readme.read_text(encoding="utf-8")
+          for name in expected:
+              old="assets/screenshots/"+name.replace(".png",".jpg")
+              new="assets/screenshots/"+name
+              body=body.replace(old,new)
+          readme.write_text(body,encoding="utf-8")
+          archive.unlink()
+          print("Imported 5 verified original PNGs at 1280x800")
+          PY
+
+      - name: Remove defective thumbnails and commit originals
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm -f --ignore-unmatch assets/screenshots/*.jpg
+          git add -A README.md assets/screenshots Rimva_Real_Screenshots_1280x800.zip
+          if ! git diff --cached --quiet; then
+            git commit -m "Replace defective screenshot thumbnails with original 1280x800 PNGs"
+            git push
+          fi

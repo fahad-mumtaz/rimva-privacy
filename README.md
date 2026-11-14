@@ -58,27 +58,27 @@ These are **actual screens** captured from the Rimva 11.2.5 extension with synth
 ### 01 · GoHighLevel backup
 Select Sites & Funnels, Account Data, and supported archive modules before downloading a backup.
 
-![Actual Rimva GoHighLevel backup screen](assets/screenshots/01-ghl-backup.jpg)
+![Actual Rimva GoHighLevel backup screen](assets/screenshots/01-ghl-backup.png)
 
 ### 02 · Published website capture
 Capture a selected public website or page, including available rendered content and assets.
 
-![Actual Rimva published website capture screen](assets/screenshots/02-published-website.jpg)
+![Actual Rimva published website capture screen](assets/screenshots/02-published-website.png)
 
 ### 03 · Import a saved ZIP
 Open compatible Rimva and legacy backup archives without requiring an active GoHighLevel session.
 
-![Actual Rimva offline ZIP import screen](assets/screenshots/03-existing-backup-import.jpg)
+![Actual Rimva offline ZIP import screen](assets/screenshots/03-existing-backup-import.png)
 
 ### 04 · Choose destination CRM
 Review adapter support and beta limitations before selecting a migration destination.
 
-![Actual Rimva destination selection screen](assets/screenshots/04-crm-migration-wizard.jpg)
+![Actual Rimva destination selection screen](assets/screenshots/04-crm-migration-wizard.png)
 
 ### 05 · Reconciliation report
 Review migrated, skipped, and failed records. **This screenshot uses synthetic data and mocked destination API responses; it is not proof of a completed live production migration.**
 
-![Actual Rimva migration report interface with synthetic results](assets/screenshots/05-migration-report.jpg)
+![Actual Rimva migration report interface with synthetic results](assets/screenshots/05-migration-report.png)
 
 ---
 

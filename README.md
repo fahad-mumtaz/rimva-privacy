@@ -6,7 +6,7 @@
 
 **Your data. Your next move.**
 
-[Privacy policy website](https://fahad-mumtaz.github.io/rimva-privacy/) · [TechSwype](https://techswype.com/) · [Developer](https://www.linkedin.com/in/fahad-mumtaz-dev/)
+[**Install Rimva — Chrome Web Store**](https://chromewebstore.google.com/detail/gbljllgkikjjlifaknocanbhbdffhomm) · [Privacy policy website](https://fahad-mumtaz.github.io/rimva-privacy/) · [TechSwype](https://techswype.com/) · [Developer](https://www.linkedin.com/in/fahad-mumtaz-dev/)
 
 </div>
 
